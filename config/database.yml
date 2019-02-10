@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: hummingbirds_production
-  username: hummingbirds
+  username: vagrant
   password: <%= ENV['HUMMINGBIRDS_DATABASE_PASSWORD'] %>
