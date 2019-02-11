@@ -11,6 +11,20 @@
     </div>
   <% end %>
 
+  First name: <%= f.text_field :first_name %><br>
+  Last name: <%= f.text_field :last_name %><br>
+  Name: <%= f.text_field :name %> <br>
+  Location: <%= f.text_field :location %> <br>
+  Bio: <%= f.text_area :bio %> <br>
+  Facebook Profile: <%= f.text_field :facebook_profile %> <br>
+  Instagram Profile: <%= f.text_field :instagram_profile %> <br>
+  Phone Number: <%= f.text_field :mobile_number %> <br>
+  Instagram Followers: <%= f.number_field :instagram_followers %> <br>
+  Facebook Friends: <%= f.number_field :facebook_followers %> <br>
+  Favorites: <%= f.text_field :favorites %> <br>
+  Email: <%= f.email_field :email %> <br>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

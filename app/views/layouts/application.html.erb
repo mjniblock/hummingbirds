@@ -6,10 +6,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-	<p class="notice"><%= notice %></p>
- 	<p class="alert"><%= alert %></p>
 	<p class="navbar-text pull-right">
+		
 		<% if user_signed_in? %>
   				Logged in as <strong><%= current_user.email %> and id#<%= current_user.id %> </strong>.
   			<%= link_to 'Home', profiles_path, :class => 'navbar-link' %> |	
@@ -21,6 +21,7 @@
 		<% end %>
 	</p>
 <%= yield %>
-
+<section class="notice"><%= notice %></section>
+<section class="alert"><%= alert %></section>
 </body>
 </html>

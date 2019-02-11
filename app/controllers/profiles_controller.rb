@@ -1,5 +1,8 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  #uncomment line below for homepage
+  before_action :authenticate_user!
+  
 
   # GET /profiles
   # GET /profiles.json
@@ -13,14 +16,21 @@ class ProfilesController < ApplicationController
     @profiles = Profile.all
     
     #reg users redirected away from profile listing back to their profile
+    #changed to profile id...not sure yet if correct
     else
-    redirect_to profile_path(current_user.id)
+    redirect_to profile_path(current_user.profile.id)
   end
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
+  
+
   def show
+    #attempting to only let user see their own profile only - code troubles
+    #if current_user.profile.id != Profile.find(params[:id])
+    #  root_path
+    #end
   end
 
   # GET /profiles/new
@@ -35,17 +45,19 @@ class ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.json
   def create
-    @profile = Profile.new(profile_params)
-
-    respond_to do |format|
-      if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
-        format.json { render :show, status: :created, location: @profile }
-      else
-        format.html { render :new }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
+    
+      @profile = Profile.new(profile_params)
+        respond_to do |format|
+          if @profile.save
+          format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+          format.json { render :show, status: :created, location: @profile }
+          else
+          format.html { render :new }
+          format.json { render json: @profile.errors, status: :unprocessable_entity }
+          end
       end
-    end
+    
+    
   end
 
   # PATCH/PUT /profiles/1
@@ -80,6 +92,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params[:profile]
+      params.require(:profile).permit(:first_name, :last_name, :name, :location, :bio, :facebook_profile, :instagram_profile, :mobile_number, :instagram_followers, :facebook_followers, :favorites, :email, :user_id)
     end
 end

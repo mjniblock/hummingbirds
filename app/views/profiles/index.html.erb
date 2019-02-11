@@ -1,18 +1,27 @@
-<h1>Listing profiles</h1>
 
-<table>
+<header class="bg-primary text-center py-5 mb-4">
+  <div class="container">
+    <br><br><br>
+    <h1 class="font-weight-light text-white">Meet our Hummingbirds</h1>
+  </div>
+</header>
+
+<table class="container">
   <thead>
     <tr>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+
+  <tbody class="col-xl-3 col-md-6 mb-4">
     <% @profiles.each do |profile| %>
       <tr>
+        <td><%= profile.first_name %></td>
+        <td><%= profile.bio %></td>
         <td><%= link_to 'Show', profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

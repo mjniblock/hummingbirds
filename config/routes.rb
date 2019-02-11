@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
 
   #unauthenticated do
-  #  root :to => 'home#index'
+  #  root :to => 'pages#index'
   #end
 
   #authenticated do
