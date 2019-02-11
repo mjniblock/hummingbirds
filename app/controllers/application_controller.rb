@@ -7,19 +7,19 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource_or_scope)
   	if resource_or_scope == :user 
-  		new_user_session_path
-  	#elsif resource_or_scope == :admin
-  	#	new_admin_session_path
-  	#else
-  	#	root_path
+  		
+      #change this when a homepage is completed
+      new_user_session_path
+    else
+      root_path
   	end
   end
 
   def after_sign_in_path_for(resource_or_scope)
   	#must create profile for new user here before redirecting to porfile path
 
-    #or send user to current profile
+    #or send user to their profile
 
-    profile_path(current_user.id) #hardcoded, must be changed to be dynamic
+    profile_path(current_user.id)
   end
 end

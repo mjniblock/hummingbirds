@@ -7,8 +7,12 @@ class ProfilesController < ApplicationController
   #Must make index only available for admin
 
   def index
+    
+    #only admins allowed to see profile list
     if current_user.admin?
     @profiles = Profile.all
+    
+    #reg users redirected away from profile listing back to their profile
     else
     redirect_to profile_path(current_user.id)
   end
